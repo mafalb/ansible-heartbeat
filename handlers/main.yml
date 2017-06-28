@@ -1,0 +1,6 @@
+---
+
+- name: reload heartbeat
+  service:
+    name: heartbeat
+    state: reloaded

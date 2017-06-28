@@ -1,0 +1,24 @@
+---
+
+- name: install heartbeat
+  package:
+    name: heartbeat
+    state: installed
+    
+# TODO:
+# authkeys
+# ha.cf
+# haresources
+
+- name: haresources
+  copy:
+    src: "{{ playbook_dir }}/files/{{ cfg }}"
+    dest: /etc/ha.d/haresources
+    backup: yes
+  notify: reload heartbeat
+
+- name: start heartbeat
+  service:
+    name: heartbeat
+    enabled: yes
+    state: started
