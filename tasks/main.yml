@@ -4,15 +4,24 @@
   package:
     name: heartbeat
     state: installed
-    
-# TODO:
-# authkeys
-# ha.cf
-# haresources
+
+- name: authkeys
+  copy:
+    src: "{{ playbook_dir }}/files/{{ heartbeat_authkeys }}"
+    dest: /etc/ha.d/authkeys
+    backup: yes
+  notify: reload heartbeat
+
+- name: ha.cf
+  copy:
+    src: "{{ playbook_dir }}/files/{{ heartbeat_ha }}"
+    dest: /etc/ha.d/ha.cf
+    backup: yes
+  notify: reload heartbeat
 
 - name: haresources
   copy:
-    src: "{{ playbook_dir }}/files/{{ cfg }}"
+    src: "{{ playbook_dir }}/files/{{ heartbeat_haresources }}"
     dest: /etc/ha.d/haresources
     backup: yes
   notify: reload heartbeat
