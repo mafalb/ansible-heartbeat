@@ -7,21 +7,21 @@
 
 - name: authkeys
   copy:
-    src: "{{ playbook_dir }}/files/{{ heartbeat_authkeys }}"
+    src: "{{ playbook_dir }}/templates/{{ heartbeat_authkeys }}"
     dest: /etc/ha.d/authkeys
     backup: yes
   notify: reload heartbeat
 
 - name: ha.cf
   copy:
-    src: "{{ playbook_dir }}/files/{{ heartbeat_ha }}"
+    src: "{{ playbook_dir }}/templates/{{ heartbeat_ha }}"
     dest: /etc/ha.d/ha.cf
     backup: yes
   notify: reload heartbeat
 
 - name: haresources
   copy:
-    src: "{{ playbook_dir }}/files/{{ heartbeat_haresources }}"
+    src: "{{ playbook_dir }}/templates/{{ heartbeat_haresources }}"
     dest: /etc/ha.d/haresources
     backup: yes
   notify: reload heartbeat
